@@ -17,7 +17,7 @@ Flags are evaluated through `IFeatureManager`. Requests do **not** call App Conf
 ## Prerequisites
 
 - .NET 10 SDK
-- Docker or another OCI runtime (required for the emulator)
+- Docker or another OCI runtime (required for the emulator). On Apple Silicon the AppHost pins emulator image **1.2.0** (arm64); Aspire’s default 1.0.2 is amd64-only.
 - Optional: Azure subscription when you want a real store instead of the emulator
 
 ## Run

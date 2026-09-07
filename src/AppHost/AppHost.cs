@@ -6,6 +6,8 @@ if (builder.ExecutionContext.IsRunMode)
 {
     appConfiguration.RunAsEmulator(emulator =>
     {
+        // Aspire 13.5.3 defaults to 1.0.2, which has no linux/arm64 manifest.
+        emulator.WithImageTag("1.2.0");
         emulator.WithLifetime(ContainerLifetime.Persistent);
         emulator.WithDataVolume();
     });
