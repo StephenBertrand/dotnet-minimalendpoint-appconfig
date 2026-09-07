@@ -1,6 +1,6 @@
-# Vertical-slice minimal APIs + Azure App Configuration
+# Feature-folder minimal APIs + Azure App Configuration
 
-Sample **.NET 10** ASP.NET Core minimal API that shows a maintainable **vertical slice** endpoint pattern, with **Azure App Configuration feature flags** that change live (no process restart).
+Sample **.NET 10** ASP.NET Core minimal API that shows a maintainable **feature-folder** endpoint pattern, with **Azure App Configuration feature flags** that change live (no process restart).
 
 Locally, [Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview) runs the official **App Configuration emulator** in a container. When you publish, the same AppHost resource is a real Azure App Configuration store.
 
@@ -9,7 +9,7 @@ Locally, [Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-o
 | Path | Behavior |
 | --- | --- |
 | `GET /hello` | `Hello World` when feature flag `HelloNewWorld` is **off**; `Hello New World` when **on** |
-| `GET /ping` | Second slice so you can see how a new folder/class is all it takes to add routes |
+| `GET /ping` | Second feature so you can see how a new folder/class is all it takes to add routes |
 | `GET /health` | Aspire / local readiness (Development) |
 
 Flags are evaluated through `IFeatureManager`. Requests do **not** call App Configuration on every hit. `UseAzureAppConfiguration` plus feature-flag cache intervals only contact the store after the refresh window (5 seconds in this demo). Key-values use a **sentinel** (`Demo:Sentinel`) so thousands of keys are not polled individually.
@@ -41,13 +41,13 @@ Set the feature flag value to `{"id":"HelloNewWorld","enabled":true}` (keep the 
 
 The emulator volume is persistent, so flag edits survive AppHost restarts. Seeding only **creates missing** keys.
 
-## Add a new endpoint slice
+## Add a new feature
 
-1. Create a folder under `src/Api/Slices/<Name>/`.
+1. Create a folder under `src/Api/Features/<Name>/`.
 2. Implement `IEndpoint` and map routes there (see `HelloEndpoints` or `PingEndpoints`).
-3. Nothing else: `AddVerticalSliceEndpoints` scans the assembly.
+3. Nothing else: `AddFeatureEndpoints` scans the assembly.
 
-Keep flag names as constants next to the slice (`HelloFeatures.NewWorld`) so App Configuration keys stay obvious.
+Keep flag names as constants next to the feature (`HelloFeatures.NewWorld`) so App Configuration keys stay obvious.
 
 ## Tests
 

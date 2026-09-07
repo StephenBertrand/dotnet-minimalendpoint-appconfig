@@ -1,5 +1,5 @@
 using System.Net.Http.Json;
-using Api.Slices.Hello;
+using Api.Features.Hello;
 
 namespace Api.Tests;
 

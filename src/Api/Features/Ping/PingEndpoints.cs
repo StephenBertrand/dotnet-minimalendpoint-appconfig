@@ -2,7 +2,7 @@ using Api.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace Api.Slices.Ping;
+namespace Api.Features.Ping;
 
 public sealed class PingEndpoints : IEndpoint
 {

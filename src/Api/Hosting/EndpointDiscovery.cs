@@ -7,7 +7,7 @@ namespace Api.Hosting;
 
 public static class EndpointDiscovery
 {
-    public static IServiceCollection AddVerticalSliceEndpoints(this IServiceCollection services, Assembly assembly)
+    public static IServiceCollection AddFeatureEndpoints(this IServiceCollection services, Assembly assembly)
     {
         var endpointTypes = assembly
             .GetTypes()
@@ -22,7 +22,7 @@ public static class EndpointDiscovery
         return services;
     }
 
-    public static WebApplication MapVerticalSlices(this WebApplication app)
+    public static WebApplication MapFeatures(this WebApplication app)
     {
         foreach (var endpoint in app.Services.GetServices<IEndpoint>())
         {

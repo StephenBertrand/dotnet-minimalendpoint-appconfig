@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 builder.AddDemoAzureAppConfiguration();
 builder.Services.AddOpenApi();
-builder.Services.AddVerticalSliceEndpoints(typeof(Program).Assembly);
+builder.Services.AddFeatureEndpoints(typeof(Program).Assembly);
 
 var app = builder.Build();
 
@@ -25,7 +25,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.MapVerticalSlices();
+app.MapFeatures();
 
 app.Run();
 

@@ -1,4 +1,4 @@
-namespace Api.Slices.Hello;
+namespace Api.Features.Hello;
 
 public static class HelloFeatures
 {
